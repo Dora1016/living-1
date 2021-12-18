@@ -11,7 +11,7 @@
     }catch(error){
         console.log(error)
     }
-    export default{
+    export default{                
         name: 'Icon',
         props: ['name']
     }
