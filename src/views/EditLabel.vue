@@ -51,9 +51,6 @@
         background: white;
         align-items: center;
         justify-content: space-between;
-       .title{
-
-       }
        .leftIcon{
            width: 24px;
            height: 24px;
@@ -63,7 +60,7 @@
            height: 24px;
        } 
     }
-    
+
     .button-wrapper{
         text-align: center;
         padding: 16px;
