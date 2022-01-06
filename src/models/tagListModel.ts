@@ -1,6 +1,6 @@
-import { DefaultProps } from "vue/types/options";
+import createId from "@/lib/createId";
 
-const localStorageKeyName = 'recordList';
+const localStorageKeyName = 'tagList';
 type Tag = {
     id: string
     name: string
@@ -21,13 +21,17 @@ const tagListModel: TagListModel = {
         this.data = JSON.parse(window.localStorage.getItem(localStorageKeyName) || '[]');
         return this.data;
     },
+
     create(name: string) {
+
         const names = this.data.map(item => item.name);
         if (names.indexOf(name) >= 0) { return 'duplicate' };
-        this.data.push({ id: name, name: name });
+        const id = createId().toString();
+        this.data.push({ id, name: name });
         this.save();
         return 'success';
     },
+
     update(id, name) {
         const idList = this.data.map(item => item.id);
         if (idList.indexOf(id) >= 0) {
@@ -44,6 +48,7 @@ const tagListModel: TagListModel = {
             return 'not found';
         }
     },
+
     remove(id: string) {
         let index = -1;
         for (let i = 0; i <= this.data.length; i++) {
@@ -59,6 +64,7 @@ const tagListModel: TagListModel = {
         return true;
 
     },
+
     save() {
         window.localStorage.setItem(localStorageKeyName, JSON.stringify(this.data));
     }
