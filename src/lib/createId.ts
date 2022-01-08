@@ -5,4 +5,4 @@ function createId() {
     window.localStorage.setItem('_idMax', id.toString());
     return id;
 }
-export default createId
+export default createId;
