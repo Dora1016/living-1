@@ -29,7 +29,7 @@
 
   import recordListModel from '@/models/recordListModel';
   import tagListModel from '@/models/tagListModel';
-import Notes from '@/components/Money/FormItem.vue';
+
   
   const tagList = tagListModel.fetch();
   const recordList = recordListModel.fetch()
@@ -45,19 +45,20 @@ import Notes from '@/components/Money/FormItem.vue';
     }
 
     onUpdateTags(value:string[]){
-      this.record.tags = value    
+      this.record.tags = value ;   
     } 
     onUpdateNotes(value:string){
-      this.record.notes = value
+      this.record.notes = value;
     }
     saveRecord(){
-      const record2:RecordItem = recordListModel.clone(this.record)
-      this.recordList.push(record2)
-      record2.createAt = new Date
+      const record2:RecordItem = recordListModel.clone(this.record);
+      record2.createAt = new Date;
+      this.recordList.push(record2);
+      
     }
     @Watch('recordList')
     onRecordListChange(){
-      recordListModel.save(this.recordList)
+      recordListModel.save();
     }
   };
 </script>
