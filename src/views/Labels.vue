@@ -23,19 +23,14 @@
 
 
     @Component({
-        components: {Button}
+        components: {tagListModel, Button}
     })
     export default class Labels extends Vue{
         tags = window.tagList;
         createTag(){
             const name = window.prompt('请输出标签名')
-            if(name){
-                const message = tagListModel.create(name)
-                if(message === 'duplicate'){
-                    window.alert('标签名重复')
-                }else if(message === 'success'){
-                    window.alert('标签名创建成功')
-                }
+            if (name) {
+                window.createTag(name);
             }
         }
     }
