@@ -27,7 +27,7 @@
     import { Component } from 'vue-property-decorator';
     import FormItem from '@/components/Money/FormItem.vue';
     import Button from '@/components/Button.vue';
-    import store from '@/store/index2';
+    import store from '@/store/store';
 
     @Component({
         components: {Button, FormItem}
