@@ -4,15 +4,22 @@
   </div>
 </template>
 
-<script>
+
+<script lang="ts">
+    import store from '@/store/indexStore';
     export default {
-        name: 'App'
+        data(){
+          return{
+            store: store
+          }
+        }
     }
 </script>
 
 <style lang="scss">
   @import "~@/assets/style/reset.scss";
-   @import "~@/assets/style/helper.scss";
+  @import "~@/assets/style/helper.scss";
+
   #app {
   font-family: $font-hei;
   -webkit-font-smoothing: antialiased;

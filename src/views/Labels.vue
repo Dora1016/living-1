@@ -19,7 +19,7 @@
     import Vue from 'vue';
     import {Component} from 'vue-property-decorator';
     import Button from '@/components/Button.vue';
-    import store from '@/store/store';
+    import store from '@/store/indexStore';
 
     @Component({
         components: {Button}
