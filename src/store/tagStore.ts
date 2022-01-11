@@ -5,7 +5,7 @@ const localStorageKeyName = 'tagList';
 const tagStore = {
     tagList: [] as Tag[],
 
-    fetchTag() {
+    fetchTags() {
         this.tagList = JSON.parse(window.localStorage.getItem(localStorageKeyName) || '[]');
         return this.tagList;
     },
@@ -23,7 +23,7 @@ const tagStore = {
         if (names.indexOf(name) >= 0) {
             window.alert('标签名重复');
             return 'duplicate'
-        };
+        }
         const id = createId().toString();
         this.tagList.push({ id, name: name });
         this.saveTag();
@@ -65,6 +65,6 @@ const tagStore = {
     },
 };
 
-tagStore.fetchTag();
+tagStore.fetchTags();
 
 export default tagStore;
