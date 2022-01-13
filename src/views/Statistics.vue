@@ -12,10 +12,13 @@
 
 </template>
 
-<script lang="ts">
-    import Types from '@/components/Money/Types.vue';
-    import Tabs from '@/components/Money/Tabs.vue';   
+<script lang="ts">   
     import Vue from 'vue';
+    import Types from '@/components/Money/Types.vue';
+    import Tabs from '@/components/Money/Tabs.vue';
+    import intervalList from '@/constants/intervalList'; 
+    import recordTypeList from '@/constants/recordTypeList';
+
     import { Component } from 'vue-property-decorator';
 
     @Component({
@@ -24,20 +27,12 @@
     export default class Statistics extends Vue{
         type = '-';
         interval = 'day';
-        intervalList = [
-            {text:'按天', value:'day'},
-            {text:'按周', value:'week'},
-            {text:'按月', value:'month'}
-        ];
-        typeList = [
-            {text:'支出', value: '-'},
-            {text:'收入', value: '+'}
-        ]
+        intervalList = intervalList;
+        recordTypeList = recordTypeList;
     }
 </script>
-
 <style lang="scss" scoped>
- @import "~@/assets/style/helper.scss"; 
+    @import "~@/assets/style/helper.scss";
     ::v-deep .type-tabs-item {
      &.selected{
          background: $highColor;
@@ -47,4 +42,4 @@
      }
  }
 
-</style>
+</style> 
