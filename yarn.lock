@@ -3759,6 +3759,11 @@ date-fns@^1.27.2:
   resolved "https://registry.npmmirror.com/date-fns/download/date-fns-1.30.1.tgz#2e71bf0b119153dbb4cc4e88d9ea5acfb50dc05c"
   integrity sha1-LnG/CxGRU9u0zE6I2epaz7UNwFw=
 
+dayjs@^1.10.7:
+  version "1.10.7"
+  resolved "https://registry.npmmirror.com/dayjs/download/dayjs-1.10.7.tgz#2cf5f91add28116748440866a0a1d26f3a6ce468"
+  integrity sha512-P6twpd70BcPK34K26uJ1KT3wlhpuOAPoMwJzpsIWUxHZ7wpmbdZL/hQqBDfz7hGurYSa5PhzdhDHtt319hL3ig==
+
 de-indent@^1.0.2:
   version "1.0.2"
   resolved "https://registry.nlark.com/de-indent/download/de-indent-1.0.2.tgz#b2038e846dc33baa5796128d0804b455b8c1e21d"
@@ -10826,12 +10831,7 @@ vm-browserify@^1.0.1:
   resolved "https://registry.nlark.com/vm-browserify/download/vm-browserify-1.1.2.tgz#78641c488b8e6ca91a75f511e7a3b32a86e5dda0"
   integrity sha1-eGQcSIuObKkadfUR56OzKobl3aA=
 
-vue-class-component@^7.1.0:
-  version "7.2.6"
-  resolved "https://registry.npm.taobao.org/vue-class-component/download/vue-class-component-7.2.6.tgz#8471e037b8e4762f5a464686e19e5afc708502e4"
-  integrity sha1-hHHgN7jkdi9aRkaG4Z5a/HCFAuQ=
-
-vue-class-component@^7.2.6:
+vue-class-component@^7.1.0, vue-class-component@^7.2.6:
   version "7.2.6"
   resolved "https://registry.nlark.com/vue-class-component/download/vue-class-component-7.2.6.tgz#8471e037b8e4762f5a464686e19e5afc708502e4"
   integrity sha1-hHHgN7jkdi9aRkaG4Z5a/HCFAuQ=
