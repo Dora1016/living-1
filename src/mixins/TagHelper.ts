@@ -7,5 +7,8 @@ export default class TagHelper extends Vue {
         const name = window.prompt('请输出标签名')
         if (!name) { return window.alert('标签名不能为空'); }
         this.$store.commit('createTag', name);
+        if (this.$store.state.createTagError) {
+            window.alert(this.$store.state.createTagError.message)
+        }
     }
 }

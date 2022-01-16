@@ -1,8 +1,10 @@
 
 <template>
     <Layout>
-       <Tabs class-prefix="type" :data-source="recordTypeList" :value.sync="type"/>
-       <ol>
+       <Tabs class-prefix="type" 
+             :data-source="recordTypeList" 
+             :value.sync="type"/>
+       <ol v-if="groupList.length>0">
            <li v-for="(group,index) in groupList" :key="index">
                <h3 class="title">
                    {{beautify(group.title)}}
@@ -15,12 +17,14 @@
                        <span class="notes">
                            {{item.notes}}
                         </span>
-                       <span>￥{{item.amount}} </span>
+                       <span>￥{{item.amount}}</span>
                    </li>
                </ol>
            </li>
        </ol>
-
+        <div v-else class="noResult">
+            快去记一笔吧~~
+        </div>
     </Layout>
 
 </template>
@@ -40,7 +44,7 @@
     })
     export default class Statistics extends Vue{
         tagString(tags: Tag[]){
-            return tags.length === 0 ? '无' : tags.join(',');
+            return tags.length === 0 ? '-' : tags.map(t=>t.name).join('，');
         }
         beautify(string:string){
             const day = dayjs(string);
@@ -60,15 +64,15 @@
         get recordList(){
             return (this.$store.state as RootState).recordList;
         }
-        get groupList(){
+       get groupList(){
             const {recordList} = this;
-            if(recordList.length===0){return [];}
             const newList = clone(recordList)
                 .filter(r=>r.type===this.type)
                 .sort((a,b) =>dayjs(b.createdAt).valueOf()-dayjs(a.createdAt).valueOf())
+            if(newList.length===0){return [] as Result;}
             type Result = {title:string,total?:number,items:RecordItem[]}[]
             const result:Result = [{title:dayjs(newList[0].createdAt).format('YYYY-MM-DD'), items:[newList[0]]}]
-            for (let i=0;i<newList.length;i++){
+            for (let i=1;i<newList.length;i++){
                 const current = newList[i];
                 const last = result[result.length-1];
                 if(dayjs(last.title).isSame(dayjs(current.createdAt),'day')){
@@ -78,11 +82,12 @@
                 }
             }
             result.map(group=>{
-                group.total = group.items.reduce((sum,item)=>sum+item.amount,0);
+                group.total = group.items.reduce((sum,item)=>{
+                    return sum+item.amount
+                },0);
             })
             return result;
-        }
-        
+        }  
 
         beforeCreate(){
             this.$store.commit('fetchRecords')
@@ -113,7 +118,11 @@
         margin-left: 16px;
         color: #999;
     }
-
+    .noResult{
+        color: #999;
+        text-align: center;
+        padding: 16px;
+    }
     ::v-deep{
       .type-tabs-item {
         &.selected{
@@ -122,9 +131,6 @@
             display: none;
           }
         }    
-      }
-      .interval-tabs-item{
-         height: 48px;
       }
     } 
 
