@@ -2,17 +2,27 @@
     <div>
         <label class="formItem">
             <span class="name">{{this.fieldName}}</span>
-            <input  :type="type || text" 
-                    :value="value"
-                    @input="onValueChanged($event.target.value)"
-                    :placeholder="placeholder">
+            <template v-if="type === 'datetime-local'">
+                <input :type="type" 
+                   :value="format(value)"
+                   @input="onValueChanged($event.target.value)"
+                   :placeholder="placeholder">
+            </template>
+            <template v-else >
+                <input :type="type" 
+                       :value="value"
+                       @input="onValueChanged($event.target.value)"
+                       :placeholder="placeholder">
+            </template>
         </label>
     </div>
-</template>
+</template> 
 
 <script lang="ts">
     import Vue from 'vue';
     import { Component, Prop} from 'vue-property-decorator';
+    import dayjs from 'dayjs';
+   
 
     @Component
     export default class FormItem extends Vue{
@@ -25,6 +35,9 @@
         
         onValueChanged(value:string){
             this.$emit('update:value', value)
+        }
+        format(isoString:string){
+            return dayjs(isoString).format('YYYY-MM-DDTHH:mm')
         }
         
     }
@@ -48,5 +61,6 @@
             height: 52px;
             padding-right: 16px;
         }
+
     }
 </style>

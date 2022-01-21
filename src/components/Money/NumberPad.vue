@@ -25,6 +25,7 @@
 <script lang="ts">
   import Vue from 'vue';
   import {Component, Prop} from 'vue-property-decorator';
+
   @Component
   export default class NumberPad extends Vue {
     
@@ -63,6 +64,7 @@
       this.output = '0'
     }
     add() {
+      
     }
     reduce() {
     }
@@ -71,6 +73,7 @@
 
 <style lang="scss" scoped>
     @import "~@/assets/style/helper.scss";    
+
     .numberPad{
         .output{
             @extend %clearfix;

@@ -6,12 +6,13 @@
         <Tabs :data-source = "recordTypeList" 
               :value.sync='record.type'/>
 
+        
         <div class="createdAt">
-          <FormItem  
-          field-name="日期" 
-          type="date"
-          placeholder="请在这里输入日期"
-          :value.sync="record.createdAt"/>
+            <FormItem  
+            field-name="日期" 
+            type="datetime-local"
+            placeholder="请在这里输入日期"
+            :value.sync="record.createdAt"/>
         </div>
         
         <div class="notes">
@@ -79,5 +80,4 @@
     display: flex;
     flex-direction: column-reverse;
     }
-  
 </style>
