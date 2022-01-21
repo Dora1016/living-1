@@ -4,6 +4,7 @@
        <Tabs class-prefix="type" 
              :data-source="recordTypeList" 
              :value.sync="type"/>
+        <Chart :options="x"/>
        <ol v-if="groupList.length>0">
            <li v-for="(group,index) in groupList" :key="index">
                <h3 class="title">
@@ -35,12 +36,12 @@
     import recordTypeList from '@/constants/recordTypeList';
     import dayjs from 'dayjs';
     import clone from '@/lib/clone';
-
     import { Component } from 'vue-property-decorator';
+    import Chart from '@/components/Chart.vue';
 
 
     @Component({
-        components: {Tabs}
+        components: {Tabs,Chart}
     })
     export default class Statistics extends Vue{
         tagString(tags: Tag[]){
@@ -64,6 +65,27 @@
         get recordList(){
             return (this.$store.state as RootState).recordList;
         }
+
+        get x(){
+            return {
+                xAxis: {
+                  type: 'category',
+                  data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+                },
+                yAxis: {
+                  type: 'value'
+                },
+                series: [
+                  {
+                    data: [150, 230, 224, 218, 135, 147, 260],
+                    type: 'line'
+                  }
+                ],
+                tooltip:{show:true}
+            }
+
+        }
+
        get groupList(){
             const {recordList} = this;
             const newList = clone(recordList)
@@ -99,6 +121,8 @@
 </script>
 <style lang="scss" scoped>
     @import "~@/assets/style/helper.scss";
+
+
     %item {
        padding: 8px 16px;
        line-height:  24px;
@@ -132,6 +156,7 @@
           }
         }    
       }
-    } 
+    }
+    
 
 </style> 
