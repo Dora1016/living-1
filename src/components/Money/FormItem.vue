@@ -2,7 +2,7 @@
     <div>
         <label class="formItem">
             <span class="name">{{this.fieldName}}</span>
-            <input  type="text" 
+            <input  :type="type || text" 
                     :value="value"
                     @input="onValueChanged($event.target.value)"
                     :placeholder="placeholder">
@@ -20,6 +20,7 @@
         @Prop({default:''}) readonly value!:string
         @Prop({required: true}) fieldName!: string;
         @Prop() placeholder?:string;
+        @Prop() type?:string;
         
         
         onValueChanged(value:string){

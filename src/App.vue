@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="app">
     <router-view/>   
   </div>
 </template>
@@ -8,15 +8,17 @@
   @import "~@/assets/style/reset.scss";
   @import "~@/assets/style/helper.scss";
 
+  body {
+    font-family: $font-hei;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #333;
+    font-size: 16px;
+    line-height: 1.5;
+  }
   #app {
-  font-family: $font-hei;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #333;
-  font-size: 16px;
-  line-height: 1.5;
-  
-}
+    max-width: 500px;
+    margin: 0 auto;
+  }
 
 </style>

@@ -6,6 +6,14 @@
         <Tabs :data-source = "recordTypeList" 
               :value.sync='record.type'/>
 
+        <div class="createdAt">
+          <FormItem  
+          field-name="日期" 
+          type="date"
+          placeholder="请在这里输入日期"
+          :value.sync="record.createdAt"/>
+        </div>
+        
         <div class="notes">
           <FormItem  
           field-name="备注" 
@@ -42,7 +50,7 @@
     recordTypeList = recordTypeList;
 
     record: RecordItem = {
-      tags:[], notes:'', type:'-', amount: 0
+      tags:[], notes:'', type:'-', amount: 0, createdAt:new Date().toISOString()
     }
 
     created(){
@@ -59,7 +67,7 @@
       }
        this.$store.commit('createRecord', this.record);
        if (this.$store.state.createRecordError === null) {
-        window.alert('已报存');
+        window.alert('已保存');
         this.record.notes = '';
       }
     }
