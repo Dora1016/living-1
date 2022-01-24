@@ -1,10 +1,15 @@
 
 <template>
     <Layout>
+
        <Tabs class-prefix="type" 
              :data-source="recordTypeList" 
              :value.sync="type"/>
-        <Chart :options="x"/>
+
+        <div  class="chart-wrapper" ref="chartWrapper">
+            <Chart class="chart" :options="options"/>
+        </div>
+        
        <ol v-if="groupList.length>0">
            <li v-for="(group,index) in groupList" :key="index">
                <h3 class="title">
@@ -23,9 +28,11 @@
                </ol>
            </li>
        </ol>
+
         <div v-else class="noResult">
             快去记一笔吧~~
         </div>
+
     </Layout>
 
 </template>
@@ -66,22 +73,49 @@
             return (this.$store.state as RootState).recordList;
         }
 
-        get x(){
+        mounted(){
+            (this.$refs.chartWrapper as HTMLDivElement).scrollLeft = 9999;
+        }
+
+        get options(){
             return {
+                grid:{
+                    left:0,
+                    right:0
+                },
                 xAxis: {
                   type: 'category',
-                  data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+                  data: ['1', '2', '3', '4', '5', '6', '7',
+                  '8', '9', '10', '11', '12', '13', '14',
+                  '15', '16', '17', '18', '19', '20', '21',
+                  '22', '23', '24', '25', '26', '27', '28',
+                  '29', '30'],
+                  axisTick:{alignWithLabel:true},
+                  axisLine:{lineStyle:{color:'#666'}}
                 },
                 yAxis: {
-                  type: 'value'
+                  type: 'value',
+                  show: false
                 },
                 series: [
                   {
-                    data: [150, 230, 224, 218, 135, 147, 260],
+                    symbolSize:10,
+                    itemStyle:{color:'#666'},
+                    symbol:'circle',
+                    data: [150, 230, 224, 218, 135, 147, 260,
+                    150, 230, 224, 218, 135, 147, 260,
+                    150, 230, 224, 218, 135, 147, 260,
+                    150, 230, 224, 218, 135, 147, 260,
+                    150, 230, ],
                     type: 'line'
                   }
                 ],
-                tooltip:{show:true}
+                tooltip:{
+                    show:true,
+                    triggerOn:'click',
+                    formatter: '{c}',
+                    position:'top'
+                }
             }
 
         }
@@ -156,6 +190,15 @@
           }
         }    
       }
+    }
+    .chart-wrapper{
+        overflow: auto;
+        &::-webkit-scrollbar{
+            display: none;
+        }
+    }
+    .chart{
+        width: 430%;
     }
     
 
