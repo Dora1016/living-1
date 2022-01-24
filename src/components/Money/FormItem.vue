@@ -37,7 +37,7 @@
             this.$emit('update:value', value)
         }
         format(isoString:string){
-            return dayjs(isoString).format('YYYY-MM-DDTHH:mm')
+            return dayjs(isoString).format('YYYY-MM-DD')
         }
         
     }

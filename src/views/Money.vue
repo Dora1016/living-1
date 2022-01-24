@@ -10,7 +10,7 @@
         <div class="createdAt">
             <FormItem  
             field-name="日期" 
-            type="datetime-local"
+            type="date"
             placeholder="请在这里输入日期"
             :value.sync="record.createdAt"/>
         </div>
@@ -56,6 +56,7 @@
 
     created(){
       this.$store.commit('fetchRecords')
+      
     }
 
     onUpdateNotes(value:string){

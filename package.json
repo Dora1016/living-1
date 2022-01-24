@@ -22,6 +22,7 @@
   "devDependencies": {
     "@types/echarts": "^4.9.12",
     "@types/jest": "^24.0.19",
+    "@types/lodash": "^4.14.178",
     "@vue/cli-plugin-babel": "^4.1.0",
     "@vue/cli-plugin-eslint": "^4.1.0",
     "@vue/cli-plugin-pwa": "^4.1.0",
@@ -44,7 +45,7 @@
     "vue-template-compiler": "^2.6.10"
   },
   "resolutions": {
-    "@babel/preset-env":"7.13.8"
+    "@babel/preset-env": "7.13.8"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"
