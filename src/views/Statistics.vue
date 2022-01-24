@@ -87,10 +87,9 @@
             const array = [];
             for (let i = 0; i <= 29; i++){
                 const dateString = day(today).subtract(i, 'day').format('YYYY-MM-DD');
-                const found = _.find(this.recordList,{createdAt:dateString});
-                array.push({key: dateString, value: found ? found.amount:0})
+                const found = _.find(this.groupList,{title:dateString});
+                array.push({key: dateString, value: found ? found.total:0})
             }
-            console.log(array)
             array.sort((a,b)=>{
                 if(a.key > b.key){
                     return 1;
@@ -104,7 +103,7 @@
         }
 
         get chartOptions(){
-            const keys = this.keyValueList.map(item=>item.date);
+            const keys = this.keyValueList.map(item=>item.key);
             const values = this.keyValueList.map(item=>item.value)
 
             return {
